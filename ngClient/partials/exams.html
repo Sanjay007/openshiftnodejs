@@ -1,0 +1,128 @@
+<div class="content-wrapper " style="min-height: 916px;" ng-controller="ExamCtrl">
+   <!-- Content Header (Page header) -->
+   <section class="content-header">
+      <h1>
+         Exam's' <small>Welcome to Yo-Exam</small>
+      </h1>
+      <ol class="breadcrumb">
+         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+         <li class="active">Exams</li>
+      </ol>
+   </section>
+
+   <toasty></toasty>
+   <!-- Main content -->
+   <section class="content">
+      <div class="col-md-12">
+         <div class="row">
+            <div class="box box-success">
+               <div class="box-body">
+                  <div class="col-md-5">
+                     <label for="exampleInputEmail1">Enter Exam name </label>
+                     <input type="text" class="form-control" ng-model="exam.name" id="exampleInputEmail1" placeholder="SEEE Certified Exam [Phy]">
+                  </div>
+                  <div class="form-group col-xs-4">
+                     <label>Duration <span class="small">(HH-MM)</span></label>
+                     <select ng-model="exam.duration" class="form-control" id="durationhour">
+                        <option>00:30</option>
+                        <option>01:00</option>
+                        <option>01:30</option>
+                        <option>01:45</option>
+                        <option>02:00</option>
+                        <option>02:15</option>
+                        <option>02:30</option>
+                        <option>02:45</option>
+                        <option>03:00</option>
+                        <option>03:15</option>
+                        <option>03:30</option>
+                        <option>Untimed</option>
+                     </select>
+                  </div>
+                  <div class="form-group col-xs-3">
+                     <label for="exampleInputEmail1">Total Questions </label>
+                     <input type="text" ng-model="exam.totalques" class="form-control" placeholder="Questions">
+                  </div>
+                  <div class="form-group col-xs-5">
+                     <label for="exampleInputEmail1">Negative Mark </label>
+                     <select ng-init="exam.negativevalue=0.1" ng-model="exam.negativevalue" class="form-control" id="negative">
+                        <option value="0" >Do not apply</option>
+                        <option value="1">Apply 1 negative marks for this exam</option>
+                        <!--<option value="0.25">Apply 25% negative marks for this exam</option>
+                        <option value="0.33">Apply 33% negative marks for this exam</option>
+                        <option value="0.5">Apply 50% negative marks for this exam</option>
+                        <option value="0.75">Apply 75% negative marks for this exam</option>
+                        <option value="1">Apply 100% negative marks for this exam</option>-->
+                     </select>
+                  </div>
+                  <div class="form-group col-xs-5">
+                     <label for="exampleInputEmail1">Pick Questions </label>
+                     <select  ng-model="exam.pickupval" ng-change="manualPickQues(exam.pickupval)" class="form-control" id="getquepickmode">
+                        <option value="0">Auto Pick (Different questions for all candidates)</option>
+                        <option value="1">Auto Pick (Same questions for all candidates)</option>
+                        <option value="2">Manual Pick</option>
+                     </select>
+                  </div>
+               </div>
+
+
+               <div ng-if="manualPick==true" class="box-footer">
+
+                   
+                  <div class="form-group col-xs-3">
+                     <label for="exampleInputEmail1">Pick Subject </label>
+                     <select ng-change="showQuesbySubject(exam.subjectType)" class="form-control" ng-model="exam.subjectType" id="getquepickmode">
+                        <option value="Phy">Phy</option>
+                        <option value="Chem">Chem</option>
+                        <option value="Bio">Bio</option>
+                     </select>
+                  </div>
+                 
+<div ng-if="showQuestion==true" class="box-body table-responsive no-padding">
+             
+          
+            <!-- /.box-header -->
+          
+              <table class="table table-striped table-condensed">
+                <tbody>
+                    <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Question</th>
+                  <th>Subject</th>
+                  <th style="width: 40px">Action</th>
+                </tr>
+                <tr ng-init="$index" ng-repeat="row in data.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+        <td>#{{$index+1}}</td>
+        <td>{{row.question}}</td>
+        <td>{{row.category}}</td>
+       <td>  <input type="checkbox" ng-model="checked" ng-click="addQuestions(checked,row)"> </td>
+      </tr>
+
+      
+
+   
+              </tbody></table>
+           
+
+            <div class="box-footer clearfix">
+   <ul uib-pagination boundary-links="true"  total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"  class="pagination-sm" ></ul>
+
+            </div>
+            <!-- /.box-body -->
+         
+            </div>
+
+
+               </div>
+
+               <div class="box box-footer">
+
+                 <button type="button" class="btn bg-orange margin" ng-click="addExam()"> Submit </button>
+               </div>
+               <!-- /.box-body -->
+            </div>
+         </div>
+      </div>
+      <!-- /row -->
+   </section>
+   <!-- /.content -->
+</div>

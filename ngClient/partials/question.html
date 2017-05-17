@@ -1,0 +1,119 @@
+<div class="content-wrapper " style="min-height: 916px;" >
+   <!-- Content Header (Page header) -->
+   <section class="content-header">
+      <h1>
+         Dash Board <small>Welcome to Yo-Exam  
+         &nbsp;&nbsp;    </small>
+      </h1>
+       <button type="button" class="btn btn-default pull-right bg-green" ng-click="add()"><i class="fa fa-plus"></i></button>
+      <ol class="breadcrumb">
+        
+       
+         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+         <li class="active">View</li>
+      </ol>
+   </section>
+   <!-- Main content -->
+   <section class="content" ng-controller="QuestionCtrl">
+      <!-- row -->
+      <!-- row -->
+      <div class="row">
+       
+
+         <div class="col-md-12">
+
+      <ul uib-pagination boundary-links="true"  total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"  class="pagination-sm" ></ul>
+
+
+            <div ng-controller="QuestionCtrl" ng-repeat="x in ques.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+
+           
+
+               <uib-accordion  close-others="oneAtATime" >
+                  <div uib-accordion-group class="panel box box-primary " is-open="status.open">
+                     <uib-accordion-heading>
+                        Q{{x.countid}}. {{x.question}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                     </uib-accordion-heading>
+                     <!--<ul class="list-unstyled" >
+                        <li ng-repeat="xs in x.answers">
+                            <div class="col-md-6">
+                            <div class="box-body">
+                          
+                              <div class="radio ">
+                                 <label>
+                               {{xs.text}}
+                                 </label>
+                              </div>
+                           </div>
+                          
+                         </div>
+                        </li>
+                        <div class="panel-footer"><span class="badge bg-red">{{x.correct}}</span> </div>
+                        </ul>-->
+
+                         
+                     <div class=" box-body no-border ">
+                        <div class="row col-md-8">
+                           <div class="col-md-5" ng-repeat="xs in x.answers" >
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                    {{xs.id}}.&nbsp;
+                                    <!-- <input type="radio" name="optionsRadios" id="optionsRadios1"  checked="false">-->
+                                 </span>
+                                 <Button  class="form-control btn-default">{{xs.text}}</Button>
+                              </div>
+                           </div>
+                           <!--<div class="col-md-5">
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                 </span>
+                                 <Button  class="form-control btn-default">java</Button>
+                              </div>
+                              </div>
+                              <div class="col-md-5">
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                 </span>
+                                 <Button  class="form-control btn-default">Android</Button>
+                              </div>
+                              </div>
+                              <div class="col-md-5">
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+                                 </span>
+                                 <Button  class="form-control btn-default">javascript</Button>
+                              </div>
+                              </div>
+                              <div class="col-md-5" style="padding-top:10px;">
+                              <div class="text-green">
+                                 Correct Answer Is : 
+                                 <p class="label label-success" >Option B</p>
+                                 &nbsp;
+                              </div>
+                              </div>-->
+                           <div class="col-md-5" style="padding-top:10px;">
+                              <div class="text-green">
+                                 Correct Answer Is : 
+                                 <p class="label label-success" >{{x.correct  }}</p>
+                              </div>
+                           </div>
+                        </div>
+                        <!--- Crud button-->
+                        <button type="button" class="btn btn-default pull-right bg-green" ng-click="openEditmodal(x)"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-default pull-right bg-red"><i class="fa fa-minus"></i></button>
+                        <!--- End Crud button-->
+                     </div>
+                  </div>
+               </uib-accordion>
+            </div>
+
+
+         </div>
+      </div>
+      <!-- /row -->
+   </section>
+   <!-- /.content -->
+</div>

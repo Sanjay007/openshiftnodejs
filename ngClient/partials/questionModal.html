@@ -1,0 +1,77 @@
+<!--<ul>
+   <li ng-repeat="item in $ctrl.items">
+       <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+   </li>
+   </ul>
+   Selected: <b>{{ $ctrl.selected. item }}</b>-->
+<div class="box box-primary">
+   <div class="box-header with-border">
+      <h3  ng-if="isUpdate==false" class="box-title"><i class="fa fa-plus"></i> Add Question</h3>
+      <h3 ng-if="isUpdate==true" class="box-title"><i class="fa fa-edit"></i> Update Question</h3>
+    
+    
+      <p ng-if="success==true" class="alert alert-success no-border ">
+            <i class="icon fa fa-check"></i>   Added Success fully ! <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                </p>
+
+                <p ng-if="error==true" class="alert alert-danger no-border ">
+            <i class="icon fa fa-warning"></i>  Error Adding Question  ! <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                </p>
+   </div>
+   <!-- /.box-header -->
+   <!-- form start -->
+   <form>
+   <div class="box-body">
+      <div class="form-group ">
+         <label>Select category</label>
+         <select ng-init="question.category=category[selectedCateg]"  class="form-control" ng-model="question.category" ng-options="item.name for item in category"  >
+            
+         </select>
+         <!--<select class="form-control">
+            <option>option 1</option>
+            <option>option 2</option>
+            <option>option 3</option>
+            <option>option 4</option>
+            <option>option 5</option>
+            </select>-->
+      </div>
+      <div class="form-group">
+         <label for="exampleInputEmail1">Question</label>
+         <textarea class="form-control" ng-model="question.question" rows="5" placeholder="Enter Question" minlength="10" required ></textarea>
+      </div>
+      <div class="form-group ">
+         <label for="exampleInputEmail1">Enter Options </label>
+         <input type="text" class="form-control"  ng-model="question.answers[0].text" id="exampleInputPassword1" placeholder="Option A" required>
+      </div>
+      <div class="form-group ">
+         <input type="text" class="form-control" ng-model="question.answers[1].text" id="exampleInputPassword1" placeholder="Option B" required>
+      </div>
+      <div class="form-group ">
+         <input type="text" class="form-control" ng-model="question.answers[2].text"  id="exampleInputPassword1" placeholder="Option C">
+      </div>
+      <div class="form-group ">
+         <input type="text" class="form-control" ng-model="question.answers[3].text"  id="exampleInputPassword1" placeholder="Option D">
+      </div>
+      <div class="form-group">
+         <label>Select Correct options</label>
+         <select ng-init="question.correct" ng-model="question.correct" class="form-control"  required>
+            <option value="A">Option A</option>
+            <option value="B">Option B</option>
+            <option value="C">Option C</option>
+            <option value="D">Option D</option>
+         </select>
+         <!--<select   class="form-control" ng-model="question.correct" ng-options="item.name for item in correct" multiple >
+            <option value="">-- choose --</option>
+            </select>-->
+      </div>
+   </div>
+   <!-- /.box-body -->
+   <div class="box-footer">
+      <div class="modal-footer">
+           <button   class="btn btn-primary" type="button" ng-click="cancel()">cancel</button>
+         <button ng-if="isUpdate==false"  class="btn btn-primary" type="submit" ng-click="add()">Add</button>
+         <button ng-if="isUpdate==true" class="btn btn-warning" type="button" ng-click="update()">Update</button>
+      </div>
+   </div>
+   </form>
+</div>
