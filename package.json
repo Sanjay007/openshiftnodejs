@@ -5,9 +5,9 @@
   "engines": {
     "node": "6.10.2"
   },
-  "main": "server2/multer2.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server2/multer2.js"
+    "start": "node server.js"
   },
   "dependencies": {
     
