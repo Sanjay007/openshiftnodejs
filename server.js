@@ -9,6 +9,5 @@ http.createServer(app).listen(app.get('port'), app.get('ip'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
+app.use(express.static('./ngClient'));
+
